@@ -28,10 +28,15 @@ function processFirstItem(stringList, callback) {
  * 
  * 1. What is the difference between counter1 and counter2?
  * 
+ * counter1 is defined using the counterMaker function, while counter2 is defined independently of any other code
+ * 
  * 2. Which of the two uses a closure? How can you tell?
+ * 
+ * counter2, because it reaches outside of the counter2() scope to return the count variable
  * 
  * 3. In what scenario would the counter1 code be preferable? In what scenario would counter2 be better? 
  *
+ * counter1 code will work better when actually modifying the variables you are using, because they are defined in the code. But counter2 code works fine if you are just reading external variables, not modifying them.
 */
 
 // counter1 code
@@ -56,12 +61,9 @@ function counter2() {
 
 Write a function called `inning` that returns a random number of points that a team scored in an inning. This should be a whole number between 0 and 2. */
 
-function inning(/*Code Here*/){
-
-    /*Code Here*/
-
+function inning(){
+    return(Math.floor(Math.random() * 3));
 }
-
 /* Task 3: finalScore()
 
 Write a higher order function called `finalScore` that accepts the callback function `inning` (from above) and a number of innings and and returns the final score of the game in the form of an object.
@@ -76,12 +78,16 @@ finalScore(inning, 9) might return:
 
 */ 
 
-function finalScore(/*code Here*/){
-
-  /*Code Here*/
-
+function finalScore(thefunction, numInnings){
+  const score = {Home:0, Away: 0};
+  for(let i=0;i<numInnings;i++){
+    score.Home += thefunction();
+    score.Away += thefunction();
+  }
+  return(score);
 }
-
+console.log("TASK 3 : 9 Innings V V V V V");
+console.log(finalScore(inning,9));
 /* Task 4: 
 
 Create a function called `scoreboard` that accepts the following parameters: 
@@ -103,8 +109,15 @@ and returns the score at each pont in the game, like so:
 Final Score: awayTeam - homeTeam */
 
 
-function scoreboard(/* CODE HERE */) {
-  /* CODE HERE */
+function scoreboard(getInningScore,inning,numInnings) {
+    const score = {Home:0, Away: 0};
+    for(let i=0;i<numInnings;i++){
+      let rands = [inning(), inning()]
+      score.Home += rands[0]
+      score.Away += rands[1]
+      console.log(i+1 + "th inning: " + rands[1] + " - " + rands[0] );
+    }
+    console.log("Final Score: " + score.Away + " - " + score.Home)
 }
-
+scoreboard("",inning,9)
 

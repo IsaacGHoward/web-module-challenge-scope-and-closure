@@ -42,6 +42,9 @@ Find the file `index.js` and complete the tasks.
 Edit the `ReadMe` file with your answers.
 
 1. In your own words, define closure (1-2 sentences).
+
+  Closure is getting a variable outside of the current scope. So like basically looking locally first, then looking outside of that because it wasn't anywhere to be found locally. I guess that's how I'd put it.
+
 2. Study the following code, then answer the questions below.
 
 ```js
@@ -63,8 +66,16 @@ dansRoll();
 ```
 
 a. Where is closure used in this code? How can you tell?
+  
+  Closure in this code is when the console.log() accesses the 'name' variable that is passed into personalDice. This is closure because it's going outside the function() scope being returned, and going to the outer function to get its variable.
+
 b. Compare and contrast calling `dansRoll` the first and second time. What is always the same? What could change?
+
+  Name will stay the same both times, but the newRoll variable could (and likely will) change. This is likely to change due to Math.Random.
+
 c. What is the lexical scope of `newRoll`? 
+
+  Function scope, as the definition is inside of the returned function.
 
 ### Task 2c - Exit Ticket
 
